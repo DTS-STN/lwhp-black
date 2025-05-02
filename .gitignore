@@ -1,0 +1,7 @@
+**/terragrunt/**/*.json
+**/terragrunt/**/*.terragrunt-cache
+**/terragrunt/**/*.terraform
+**/terragrunt/**/*.terraform**
+**/.terrform
+**/.terrform**
+*.pfx
