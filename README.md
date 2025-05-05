@@ -1,2 +1,2 @@
 # lwhp-black
-DTS Light Weight Hosting Platform Red Deployment
+DTS Light Weight Hosting Platform Black Deployment
