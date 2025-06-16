@@ -1,17 +1,17 @@
 resource "azurerm_container_registry" "lwhp_acr" {
-  name = "acrlwhp${var.environment}"
+  name = "acrlwhpblk${var.environment}"
   resource_group_name = var.acr_rg_name
   location = var.location
   sku = "Premium"
 }
 
 resource "azurerm_private_endpoint" "acr_pep" {
-  name                = "pep-acr-lwhp-${var.environment}"
+  name                = "pep-acr-lwhpblk-${var.environment}"
   location            = var.location
   resource_group_name = var.acr_rg_name
   subnet_id           = var.snet_restricted_pep_lwhp_id
   private_service_connection {
-    name                           = "con-acr-lwhp-${var.environment}"
+    name                           = "con-acr-lwhpblk-${var.environment}"
     private_connection_resource_id = azurerm_container_registry.lwhp_acr.id
     is_manual_connection           = false
     subresource_names              = ["registry"]

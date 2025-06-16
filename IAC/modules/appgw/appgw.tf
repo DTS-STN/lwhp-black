@@ -5,11 +5,11 @@ locals {
 resource "azurerm_user_assigned_identity" "appGatewayIdentity" {
   resource_group_name = var.agw_shared_rg_name
   location            = var.location
-  name                = "id-appgw-lwhp-${var.environment}"
+  name                = "id-appgw-lwhpblk-${var.environment}"
 }
 
 resource "azurerm_application_gateway" "application_gw" {
-  name                = "agw-lwhp-${var.environment}"
+  name                = "agw-lwhpblk-${var.environment}"
   resource_group_name = var.agw_shared_rg_name
   location            = var.location
 

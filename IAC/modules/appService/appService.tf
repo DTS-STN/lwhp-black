@@ -28,7 +28,7 @@ resource "azurerm_linux_web_app" "app_service" {
     container_registry_use_managed_identity       = true
     container_registry_managed_identity_client_id = azurerm_user_assigned_identity.user_managed_identity.client_id
     application_stack {
-      docker_registry_url = "https://acrlwhpdev.azurecr.io"
+      docker_registry_url = "https://acrlwhpblkdev.azurecr.io"
       docker_image_name   = "${var.image_name}:${var.image_tag}"
     }
   }
@@ -49,7 +49,7 @@ resource "azurerm_linux_web_app_slot" "app_service_int_slot" {
     container_registry_use_managed_identity       = true
     container_registry_managed_identity_client_id = azurerm_user_assigned_identity.user_managed_identity.client_id
     application_stack {
-      docker_registry_url = "https://acrlwhpdev.azurecr.io"
+      docker_registry_url = "https://acrlwhpblkdev.azurecr.io"
       docker_image_name   = "${var.image_name}:${var.int_image_tag}"
     }
   }

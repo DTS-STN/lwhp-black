@@ -1,7 +1,7 @@
 data "azurerm_client_config" "client_config" {
 }
 resource "azurerm_key_vault" "environment_keyvault" {
-  name                        = "kv-lwhp-depot-${var.environment}"
+  name                        = "kv-lwhpblk-depot-${var.environment}"
   location                    = var.location
   resource_group_name         = var.depot_rg_name
   enabled_for_disk_encryption = true
@@ -28,12 +28,12 @@ resource "azurerm_key_vault_secret" "wildcard_certificate_password" {
   key_vault_id = azurerm_key_vault.environment_keyvault.id
 }
 resource "azurerm_private_endpoint" "kv_pep" {
-  name                = "pep-kv-lwhp-${var.environment}"
+  name                = "pep-kv-lwhpblk-${var.environment}"
   location            = var.location
   resource_group_name = var.depot_rg_name
   subnet_id           = var.snet_restricted_pep_lwhp_id
   private_service_connection {
-    name                           = "con-kv-lwhp-${var.environment}"
+    name                           = "con-kv-lwhpblk-${var.environment}"
     private_connection_resource_id = azurerm_key_vault.environment_keyvault.id
     is_manual_connection           = false
     subresource_names              = ["vault"]

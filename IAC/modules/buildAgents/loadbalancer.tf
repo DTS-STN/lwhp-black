@@ -1,5 +1,5 @@
 resource "azurerm_lb" "build_agents_lb" {
-  name                = "lwhp-lb-build-agents-${var.environment}"
+  name                = "lwhpblk-lb-build-agents-${var.environment}"
   location            = var.location
   resource_group_name = var.build_agents_rg_name
 

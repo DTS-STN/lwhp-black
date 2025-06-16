@@ -1,5 +1,5 @@
 resource "azurerm_subnet" "pep_lwhp" {
-  name                 = "snet-pep-lwhp-${var.environment}"
+  name                 = "snet-pep-lwhpblk-${var.environment}"
   resource_group_name  = var.networking_rg_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["11.0.0.0/25"]
@@ -10,7 +10,7 @@ resource "azurerm_subnet_network_security_group_association" "snet_pep_nsg_assoc
 }
 
 resource "azurerm_subnet" "app_service_lwhp" {
-  name                 = "snet-app-service-lwhp-${var.environment}"
+  name                 = "snet-app-service-lwhpblk-${var.environment}"
   resource_group_name  = var.networking_rg_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   delegation {
@@ -28,7 +28,7 @@ resource "azurerm_subnet_network_security_group_association" "snet_app_service_n
 }
 
 resource "azurerm_subnet" "restricted_pep_lwhp" {
-  name                 = "snet-restricted-pep-lwhp-${var.environment}"
+  name                 = "snet-restricted-pep-lwhpblk-${var.environment}"
   resource_group_name  = var.networking_rg_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["11.0.0.128/26"]
@@ -39,7 +39,7 @@ resource "azurerm_subnet_network_security_group_association" "restricted_pep_nsg
 }
 
 resource "azurerm_subnet" "build_agents" {
-  name                 = "snet-build-agents-lwhp-${var.environment}"
+  name                 = "snet-build-agents-lwhpblk-${var.environment}"
   resource_group_name  = var.networking_rg_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["11.0.0.192/26"]
