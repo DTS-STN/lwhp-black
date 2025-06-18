@@ -4,11 +4,9 @@ variable "environment" {
 }
 variable "location" {
   type    = string
-  default = "Canada Central"
 }
 variable "base_domain" {
   type    = string
-  default = ""
 }
 variable "subscription_id" {
   type = string
@@ -34,15 +32,6 @@ variable "kv_uri" {
 variable "kv_id" {
   type = string
 }
-variable "dns_rg" {
-  type = string
-}
-variable "dns_id" {
-  type = string
-}
-variable "dns_name" {
-  type = string
-}
 variable "private_dns_rg" {
   type = string
 }
@@ -55,19 +44,13 @@ variable "privatelink_dns_name" {
 variable "privatelink_dns_id" {
   type = string
 }
-variable "lwhp_vnet_name" {
-  type = string
-}
-variable "snet_pep_lwhp_id" {
+variable "snet_peps_id" {
   type = string
 }
 variable "snet_app_service_id" {
   type = string
 }
-variable "log_workspace_id" {
-  type = string
-}
-variable "acr_admin_password" {
+variable "law_id" {
   type = string
 }
 variable "image_name" {
@@ -75,20 +58,19 @@ variable "image_name" {
 }
 variable "image_tag" {
   type = string
-  default = "latest"
 }
 variable "int_image_tag" {
-  type = string
-}
-variable "uat_image_tag" {
   type = string
 }
 variable "acr_id" {
   type = string
 }
-variable email_receiver {
+variable email_receivers {
   type        = list(object({
     name = string,
     email = string 
   }))
+}
+variable "platform" {
+  type = string
 }

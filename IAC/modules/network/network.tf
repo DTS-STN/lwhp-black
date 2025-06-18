@@ -1,35 +1,35 @@
 resource "azurerm_virtual_network" "esdc_hub_peered_vnet" {
-  name                = "vnet-lwhpblk-esdc-hub-link-${var.environment}"
+  name                = "vnet-${var.platform}-esdc-hub-link-${var.environment}"
   resource_group_name = var.networking_rg_name
   location            = var.location
   address_space       = [var.appgw_vnet_address_space]
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "vnet-lwhpblk-${var.environment}"
+  name                = "vnet-${var.platform}-${var.environment}"
   resource_group_name = var.networking_rg_name
   location            = var.location
   address_space       = ["11.0.0.0/24", "11.0.1.0/24"]
 }
 
-resource "azurerm_virtual_network_peering" "peer_hub_to_lwhp" {
-  name                      = "peer-hub-to-lwhpblk"
+resource "azurerm_virtual_network_peering" "peer_hub_to_platform" {
+  name                      = "peer-hub-to-${var.platform}"
   resource_group_name       = var.networking_rg_name
   virtual_network_name      = azurerm_virtual_network.esdc_hub_peered_vnet.name
   remote_virtual_network_id = azurerm_virtual_network.vnet.id
 }
-resource "azurerm_virtual_network_peering" "peer_lwhp_to_hub" {
-  name                      = "peer-lwhpblk-to-hub"
+resource "azurerm_virtual_network_peering" "peer_platform_to_hub" {
+  name                      = "peer-${var.platform}-to-hub"
   resource_group_name       = var.networking_rg_name
   virtual_network_name      = azurerm_virtual_network.vnet.name
   remote_virtual_network_id = azurerm_virtual_network.esdc_hub_peered_vnet.id
 }
 
 resource "azurerm_route_table" "route_table_perimeter_firewall" {
-  name                          = "rt-lwhpblk-${var.environment}"
+  name                          = "rt-${var.platform}-${var.environment}"
   resource_group_name           = var.networking_rg_name
   location                      = var.location
-  bgp_route_propagation_enabled = false # unable to be set to true by policy, refer to https://014gc.sharepoint.com/sites/OI-CO/SitePages/AzurePolicy/Assignments/NetworkSecurity-DenyBGP-RouteTables.aspx
+  bgp_route_propagation_enabled = false # required as true is disallowed by azure policy
   route = [{
     name                   = "RouteAllToCentral1FirewallEgressLbVip"
     address_prefix         = "0.0.0.0/0"

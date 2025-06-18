@@ -1,5 +1,5 @@
 include {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 dependency "resourceGroups" {
@@ -15,6 +15,6 @@ terraform {
 }
 
 inputs  = {
-    log_rg_name = dependency.resourceGroups.outputs.log_rg_name
+    logs_rg_name = dependency.resourceGroups.outputs.logs_rg_name
     retention_days = 30
 }

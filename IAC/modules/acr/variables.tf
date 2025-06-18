@@ -7,10 +7,13 @@ variable "location" {
 variable "acr_rg_name" {
   type = string
 }
-variable "snet_restricted_pep_lwhp_id" {
+variable "snet_peps_id" {
   type = string
 }
 variable "privatelink_dns_id" {
+  type = string
+}
+variable "privatelink_dns_name" {
   type = string
 }
 variable "subscription_id" {
@@ -25,6 +28,9 @@ variable "client_id" {
 variable "client_secret" {
   type = string
 }
-variable "log_workspace_id" {
+variable "law_id" {
+  type = string
+}
+variable "platform" {
   type = string
 }
