@@ -19,9 +19,6 @@ variable "tenant_id" {
 variable "client_id" {
   type = string
 }
-variable "object_id" {
-  type = string
-}
 variable "dns_rg_name" {
   type    = string
   default = ""
